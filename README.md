@@ -10,12 +10,11 @@ the benchmark numbers cited in the report.
 ```
 Assignment 1/
 ├── README.md                       <- this file
-├── Holland_Ben_Assignment1.pdf     <- the submitted report (compiled from report/main.tex)
 ├── src/                            <- source tree (Python 3.11+, std-library only)
 │   ├── formula.py                  <- term/formula AST + sequent printer
 │   ├── parser.py                   <- recursive-descent parser for the course syntax
 │   ├── baseline.py                 <- Algorithm 2 baseline prover
-│   ├── improved.py                 <- improved prover (4 toggleable improvements)
+│   ├── improved.py                 <- improved prover (4 layered improvements)
 │   ├── bench.py                    <- benchmark harness
 │   ├── smoketest.py                <- single-prover smoke test
 │   └── smoketest_both.py           <- side-by-side baseline/improved smoke test
@@ -76,21 +75,20 @@ python -m src.smoketest_both "(forall x. P(x) -> Q(x)) -> ((forall x. P(x)) -> (
 
 The baseline (`src/baseline.py`) is a faithful Python port of Algorithm 2
 from Hou (2021, p.67). The improved prover (`src/improved.py`) layers four
-independently-toggleable improvements on top:
+improvements on top:
 
 - **I1 — Duplicate-formula elimination.** Skip a rule application that would
   introduce a formula already present on the same side of the sequent.
 - **I2 — Branch-local loop detection.** Maintain the set of ancestor sequent
   signatures along the current branch and abort a branch on revisitation.
-- **I3 — Closure look-ahead.** When choosing among admissible quantifier
-  instantiations, prefer instances that immediately produce an axiom on the
-  current branch.
-- **I4 — Herbrand-guided instantiation.** Restrict ∀L / ∃R witness terms to
-  the Herbrand universe of the current sequent rather than all fresh
-  variables.
+- **I3 — Closure look-ahead.** Score applicable invertible rules by whether
+  their premises immediately produce an axiom on the current branch.
+- **I4 — Herbrand-guided instantiation.** Prioritise ∀L / ∃R witness terms
+  already occurring with the same predicate on the opposite side of the
+  sequent, then fall back to other current terms and fresh symbols.
 
-All four are on by default; each can be toggled in `src/improved.py` via
-the corresponding flag in the `Improved` constructor.
+The baseline and improved provers remain separate so the benchmark can compare
+them directly.
 
 ## Benchmark headline numbers
 
@@ -109,9 +107,8 @@ each dataset file.
 
 ## Report
 
-The compiled report is `Holland_Ben_Assignment1.pdf` in this folder.
-LaTeX sources are under `report/`; see `report/README.md` for build
-instructions.
+The submission PDF is generated from `report/main.tex`. LaTeX sources are under
+`report/`; see `report/README.md` for build instructions.
 
 ## Citation
 

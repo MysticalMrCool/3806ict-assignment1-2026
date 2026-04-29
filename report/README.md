@@ -1,7 +1,7 @@
 # Report sources
 
-LaTeX sources for the LNCS report. The compiled PDF
-(`Holland_Ben_Assignment1.pdf`) lives in the assignment root.
+LaTeX sources for the LNCS report. Generated PDFs are ignored by git; the
+submission PDF is compiled from `main.tex`.
 
 ## Files
 

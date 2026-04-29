@@ -60,7 +60,7 @@ class ProofResult:
     status: str                       # 'proved' | 'countermodel' | 'aborted'
     steps: int
     tree: SequentNode
-    # per-branch info for debugging
+    # Number of unclosed leaves remaining in the derivation tree.
     open_leaves: int = 0
 
 
