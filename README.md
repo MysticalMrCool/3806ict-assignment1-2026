@@ -114,7 +114,9 @@ The submission PDF is generated from `report/main.tex`. LaTeX sources are under
 
 If this code is reused, cite:
 
-- Hou, Z. (2021). *Fundamentals of Logic and Computation*. Springer.
+- Hou, Z. (2021). *Fundamentals of Logic and Computation: With Practical
+  Automated Reasoning and Verification*. Springer.
   doi:10.1007/978-3-030-87882-5 (for Algorithm 2 itself).
 - Pelletier, F. J. (1986). *Seventy-five problems for testing automatic
-  theorem provers*. JAR 2(2):191–216 (for the Pelletier dataset).
+  theorem provers*. JAR 2(2):191–216.
+  doi:10.1007/BF02432151 (for the Pelletier dataset).
