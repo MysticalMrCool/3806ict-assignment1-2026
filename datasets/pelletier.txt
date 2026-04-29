@@ -1,0 +1,64 @@
+# Pelletier benchmark subset — first-order problems.
+# Source: F. J. Pelletier, "Seventy-five problems for testing automatic
+# theorem provers", Journal of Automated Reasoning 2(2):191-216, 1986.
+# Encoded in the course's ASCII syntax. Numbering follows Pelletier's paper.
+
+# ---- Propositional fragment (Pel 1-17) ----------------------------------
+# Pel 1
+(P -> Q) -> (~Q -> ~P)	proved
+# Pel 2
+~~P -> P	proved
+# Pel 3
+~(P -> Q) -> (Q -> P)	proved
+# Pel 4
+(~P -> Q) -> (~Q -> P)	proved
+# Pel 5
+((P | Q) -> (P | R)) -> (P | (Q -> R))	proved
+# Pel 6
+P | ~P	proved
+# Pel 7
+P | ~~~P	proved
+# Pel 8  (Peirce's law)
+((P -> Q) -> P) -> P	proved
+# Pel 9
+((P | Q) & (~P | Q) & (P | ~Q)) -> ~(~P | ~Q)	proved
+# Pel 10 — simultaneous equivalences
+((Q -> R) & (R -> (P & Q)) & (P -> (Q | R))) -> (P -> Q)	proved
+# Pel 11
+P -> P	proved
+# Pel 12  (equivalence chain)
+(((P -> Q) -> R) -> S) -> (((P -> R) -> S) -> S)	proved
+# Pel 13  (distribution)
+(P | (Q & R)) -> ((P | Q) & (P | R))	proved
+# Pel 16
+(P -> Q) | (Q -> P)	proved
+# Pel 17
+((P & (Q -> R)) -> S) -> ((~P | Q | S) & (~P | ~R | S))	proved
+
+# ---- Monadic first-order problems (Pel 18-36) ---------------------------
+# Pel 18 — there exists a y such that for every x, F(y) implies F(x).
+exists y. forall x. F(y) -> F(x)	proved
+# Pel 19
+exists x. forall y. forall z. (P(y) -> Q(z)) -> (P(x) -> Q(x))	proved
+# Pel 20
+(forall x. forall y. exists z. forall w. (P(x) & Q(y)) -> (R(z) & S(w))) -> (exists x. exists y. (P(x) & Q(y))) -> (exists z. R(z))	proved
+# Pel 21
+(exists x. (P -> F(x))) & (exists x. (F(x) -> P)) -> (exists x. (P -> F(x)) & (F(x) -> P))	proved
+# Pel 22
+(forall x. P -> F(x)) -> (P -> forall x. F(x))	proved
+# Pel 24  — classical non-constructive
+~(exists x. S(x) & Q(x)) & (forall x. P(x) -> Q(x) | R(x)) & (~(exists x. P(x)) -> exists x. Q(x)) & (forall x. Q(x) | R(x) -> S(x)) -> exists x. P(x) & R(x)	proved
+# Pel 25
+(exists x. P(x)) & (forall x. F(x) -> ~G(x) & R(x)) & (forall x. P(x) -> G(x) & F(x)) & ((forall x. P(x) -> Q(x)) | exists x. P(x) & R(x)) -> exists x. Q(x) & P(x)	proved
+
+# ---- Drinker's paradox and relatives -----------------------------------
+# Pel 38 (drinker's paradox, simple form)
+exists x. (D(x) -> forall y. D(y))	proved
+
+# ---- Known non-theorems (must not prove) -------------------------------
+# Barber paradox: no barber shaves exactly those who don't shave themselves
+exists b. forall x. shaves(b, x) -> ~shaves(x, x)	countermodel
+# Converse of monotonicity — not valid
+((forall x. P(x)) -> (forall x. Q(x))) -> (forall x. (P(x) -> Q(x)))	countermodel
+# Empty-domain counterexample style
+(exists x. P(x)) -> forall x. P(x)	countermodel

@@ -1,0 +1,22 @@
+Benchmark run  (step_limit=300, fresh_cap=3)
+==============================================================================
+Dataset               N  Base correct  Impr correct  Base steps sum  Impr steps sum  Base ms sum  Impr ms sum
+course               22            14            18          2491          1324       806.3       256.6
+pelletier            26            20            22          1688          1202      1367.6      8375.5
+propositional        25            25            25           142           142         0.9         3.1
+synthetic            29            23            28          1910           509      1515.6       457.0
+------------------------------------------------------------------------------
+TOTAL               102            82            93          6231          3177      3690.4      9092.3
+
+Divergences (baseline != improved):
+  course#4   exp=proved        base=aborted    ( 300 steps,    6.7ms)  impr=proved     (   9 steps,    0.2ms)  :: (forall x. R1(x) -> R2(x)) -> ((forall x. R1(x)) -> (forall x. R2(x)))
+  course#12  exp=proved        base=aborted    ( 300 steps,   80.1ms)  impr=proved     (   8 steps,    0.2ms)  :: (forall x. forall y. R(x, y)) -> (forall y. forall x. R(x, y))
+  course#13  exp=proved        base=aborted    ( 300 steps,   80.9ms)  impr=proved     (   9 steps,    0.3ms)  :: (exists x. exists y. R(x, y)) -> (exists y. exists x. R(x, y))
+  course#18  exp=proved        base=aborted    ( 300 steps,  390.1ms)  impr=proved     (   7 steps,    0.2ms)  :: (exists x. forall y. R(x, y)) -> (forall y. exists x. R(x, y))
+  pelletier#19  exp=proved        base=aborted    ( 300 steps,   67.3ms)  impr=proved     (  41 steps,    2.2ms)  :: (exists x. (P -> F(x))) & (exists x. (F(x) -> P)) -> (exists x. (P -> F(x)) & (F(x) -> P))
+  pelletier#22  exp=proved        base=aborted    ( 300 steps,   15.6ms)  impr=proved     (  67 steps,    5.7ms)  :: (exists x. P(x)) & (forall x. F(x) -> ~G(x) & R(x)) & (forall x. P(x) -> G(x) & F(x)) & ((forall x. P(x) -> Q(x)) | exists x. P(x) & R(x)) -> exists x. Q(x) & P(x)
+  synthetic#19  exp=proved        base=aborted    ( 300 steps,   16.4ms)  impr=proved     (   9 steps,    0.3ms)  :: (forall x. P(x) -> Q(x)) -> ((forall x. P(x)) -> (forall x. Q(x)))
+  synthetic#25  exp=proved        base=aborted    ( 300 steps,  915.0ms)  impr=proved     (   7 steps,    0.4ms)  :: (exists x. forall y. R(x, y)) -> (forall y. exists x. R(x, y))
+  synthetic#26  exp=proved        base=aborted    ( 300 steps,  162.2ms)  impr=proved     (   6 steps,    0.4ms)  :: (forall x. forall y. R(x, y)) -> (exists x. exists y. R(x, y))
+  synthetic#28  exp=proved        base=aborted    ( 300 steps,   45.2ms)  impr=proved     (  17 steps,    1.2ms)  :: (forall x. P(x) -> P(f(x))) & P(a) -> P(f(f(a)))
+  synthetic#29  exp=proved        base=aborted    ( 300 steps,   48.9ms)  impr=proved     (  23 steps,    1.4ms)  :: (forall x. P(x) -> P(f(x))) & P(a) -> P(f(f(f(a))))

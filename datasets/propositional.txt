@@ -1,0 +1,37 @@
+# Propositional dataset — classical tautologies and common non-tautologies.
+# Format: formula [TAB] expected-status    (proved | countermodel)
+# Source: standard propositional-logic textbooks (Mendelson 1997; Troelstra & Schwichtenberg 2000),
+#         the lecturer's workshop problems, and additions by the author.
+
+# --- Axiom schemas of classical propositional logic -----------------------
+P -> P	proved
+P -> Q -> P	proved
+(P -> Q -> R) -> (P -> Q) -> (P -> R)	proved
+(~P -> ~Q) -> (Q -> P)	proved
+
+# --- de Morgan / double negation -----------------------------------------
+~(P & Q) -> (~P | ~Q)	proved
+(~P | ~Q) -> ~(P & Q)	proved
+~(P | Q) -> (~P & ~Q)	proved
+(~P & ~Q) -> ~(P | Q)	proved
+~~P -> P	proved
+P -> ~~P	proved
+
+# --- Other classical validities ------------------------------------------
+P | ~P	proved
+((P -> Q) -> P) -> P	proved
+(P -> Q) -> (~Q -> ~P)	proved
+(~Q -> ~P) -> (P -> Q)	proved
+(P & Q) -> (P | Q)	proved
+(P & (Q | R)) -> ((P & Q) | (P & R))	proved
+((P & Q) | (P & R)) -> (P & (Q | R))	proved
+(P -> (Q -> R)) -> ((P -> Q) -> (P -> R))	proved
+(P -> Q) & (Q -> R) -> (P -> R)	proved
+
+# --- Non-tautologies (expected countermodel) -----------------------------
+P -> Q	countermodel
+P & Q	countermodel
+(P -> Q) -> (Q -> P)	countermodel
+P | Q	countermodel
+~P	countermodel
+(P | Q) -> (P & Q)	countermodel

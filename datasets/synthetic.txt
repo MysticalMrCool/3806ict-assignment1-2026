@@ -1,0 +1,52 @@
+# Synthetic dataset — author-generated formula families for scaling analysis.
+# These formulae are parameterised to stress specific algorithmic behaviour:
+# (a) branching explosion (deep /\R / \/L chains),
+# (b) quantifier instantiation depth,
+# (c) formula duplication / contraction.
+# Provenance: hand-written by the author for this assignment.
+
+# --- Deep right-associated implication chain -----------------------------
+P1 -> P1	proved
+P1 -> (P2 -> P1)	proved
+P1 -> (P2 -> (P3 -> P1))	proved
+P1 -> (P2 -> (P3 -> (P4 -> P1)))	proved
+P1 -> (P2 -> (P3 -> (P4 -> (P5 -> P1))))	proved
+
+# --- Deep conjunction chain on LHS of an implication --------------------
+(P1 & P1) -> P1	proved
+(P1 & P2 & P3) -> P1	proved
+(P1 & P2 & P3 & P4) -> P1	proved
+(P1 & P2 & P3 & P4 & P5) -> P3	proved
+(P1 & P2 & P3 & P4 & P5 & P6) -> P6	proved
+
+# --- Deep disjunction chain on RHS of an implication --------------------
+P1 -> (P1 | P2)	proved
+P1 -> (P1 | P2 | P3)	proved
+P1 -> (P2 | P1 | P3 | P4)	proved
+P3 -> (P1 | P2 | P3 | P4 | P5)	proved
+
+# --- Quantifier-instantiation depth (requires multiple witnesses) -------
+(forall x. P(x)) -> P(a)	proved
+(forall x. P(x)) -> (P(a) & P(b))	proved
+(forall x. P(x)) -> (P(a) & P(b) & P(c))	proved
+(forall x. P(x)) -> (P(a) & P(b) & P(c) & P(d))	proved
+# Forcing the prover to use the same variable twice:
+(forall x. P(x) -> Q(x)) -> ((forall x. P(x)) -> (forall x. Q(x)))	proved
+
+# --- Redundant-formula stress tests (contraction helps) ------------------
+(P & P) -> P	proved
+(P & P & P) -> P	proved
+((P | P) & (P | P)) -> P	proved
+(~~P & ~~P) -> P	proved
+
+# --- Nested quantifier alternation --------------------------------------
+(forall x. exists y. R(x, y)) -> (forall x. exists y. R(x, y))	proved
+(exists x. forall y. R(x, y)) -> (forall y. exists x. R(x, y))	proved
+(forall x. forall y. R(x, y)) -> (exists x. exists y. R(x, y))	proved
+# Valid under the standard Tarski convention that every model has a non-empty
+# domain (which LK's exists-R rule tacitly assumes — we can always pick a witness).
+
+# --- Logic that requires a witness not already in the sequent -----------
+(forall x. P(x) -> P(f(x))) & P(a) -> P(f(a))	proved
+(forall x. P(x) -> P(f(x))) & P(a) -> P(f(f(a)))	proved
+(forall x. P(x) -> P(f(x))) & P(a) -> P(f(f(f(a))))	proved

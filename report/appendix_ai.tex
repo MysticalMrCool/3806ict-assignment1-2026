@@ -1,0 +1,63 @@
+% =============================================================================
+% Appendix: representative queries issued to a generative-AI assistant during
+% this assignment, and the artefacts the assistant produced. Prompts are
+% paraphrased for brevity; the assistant was used for coding help, LaTeX/TikZ
+% formatting, and sanity checks.
+% =============================================================================
+
+\paragraph{Tool.}
+Anthropic Claude (Sonnet/Opus class), accessed through the Cowork desktop
+interface, used while preparing this assignment in April 2026.
+
+\paragraph{Prompt 1 -- Why $\forall L$ can loop.}
+\textit{``Algorithm~2 keeps the principal formula in the premise of
+$\forall L$. Why exactly does that allow non-termination, and what's the
+cheapest sound way to bound it?''}
+\\\textit{Output:} an explanation that the principal formula stays
+available because witness choice may need to be revisited, and a
+description of branch-local loop detection (hash the multiset of
+formulae on the current branch and reject any rule whose conclusion
+revisits an ancestor) as a sound termination aid.
+
+\paragraph{Prompt 2 -- Capture-avoiding substitution side condition.}
+\textit{``In $\forall L$, when can I safely substitute a term $t$ for a
+bound variable $x$? My filter only checks bare \texttt{Var} arguments
+and is letting through cases where $t$ contains a bound variable inside
+a function symbol.''}
+\\\textit{Output:} the standard side condition for capture-avoiding
+substitution, with a note that the bound-variable check has to recurse
+into compound terms because $f(y, g(z))$ can hide a bound $y$ or $z$.
+
+\paragraph{Prompt 3 -- Hashing sequents for loop detection.}
+\textit{``How do I produce a canonical hash of a sequent so that order of
+formulae doesn't matter and structurally identical sequents collide?''}
+\\\textit{Output:} serialise each side as a sorted tuple of canonical
+formula strings, take the pair, and rely on Python's
+\texttt{hash(tuple)}. Worth fixing \texttt{PYTHONHASHSEED} for
+reproducibility.
+
+\paragraph{Prompt 4 -- TikZ flowchart layout.}
+\textit{``How do I draw a vertical flowchart in TikZ with rectangle
+action nodes and a diamond decision node, with arrows labelled
+``yes''/``no''?''}
+\\\textit{Output:} an example using \texttt{positioning},
+\texttt{shapes.geometric}, and \texttt{arrows.meta} libraries, with
+\texttt{node distance} for vertical stacking and a \texttt{decision}
+style for the diamond.
+
+\paragraph{Prompt 5 -- Dataset label check.}
+\textit{``Is $(\forall x\forall y.\,R(x,y)) \to (\exists x\exists
+y.\,R(x,y))$ valid under the non-empty-domain convention used in the
+course?''}
+\\\textit{Output:} yes — under non-empty domain $\forall x\forall y.\,R$
+gives at least one $(a,b)$ with $R(a,b)$, which witnesses the
+existential side. The dataset label was kept as \texttt{proved} on the
+strength of this argument.
+
+\paragraph{Prompt 6 -- splncs04 BibTeX entry.}
+\textit{``What's the \texttt{splncs04} BibTeX entry I should use for
+Pelletier's 1986 paper on automatic theorem provers?''}
+\\\textit{Output:} an \texttt{@article} entry with the author, title,
+journal (\textit{Journal of Automated Reasoning}), volume~2, issue~2,
+page range 191--216, year 1986, and the DOI
+\texttt{10.1007/BF02432151}.

@@ -1,0 +1,24 @@
+# LaTeX build artifacts
+Holland_Ben_Assignment1.pdf
+report/main.aux
+report/main.bbl
+report/main.blg
+report/main.log
+report/main.out
+report/main.pdf
+report/main.synctex.gz
+report/*.aux
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# OS / editor files
+.DS_Store
+desktop.ini
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

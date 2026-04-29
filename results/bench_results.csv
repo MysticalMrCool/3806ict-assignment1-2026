@@ -1,0 +1,103 @@
+dataset,idx,formula,expected,base_status,base_steps,base_ms,impr_status,impr_steps,impr_ms
+course,1,(~(forall x. R(x))) -> (exists x. ~R(x)),proved,proved,6,0.075,proved,6,0.182
+course,2,(~(exists x. R(x))) -> (forall x. ~R(x)),proved,proved,6,0.041,proved,6,0.083
+course,3,(forall x. exists y. (R1(x) & R2(y))) -> ((forall x. R1(x)) & (exists x. R2(x))),proved,aborted,300,81.987,aborted,300,65.492
+course,4,(forall x. R1(x) -> R2(x)) -> ((forall x. R1(x)) -> (forall x. R2(x))),proved,aborted,300,6.691,proved,9,0.198
+course,5,(forall x. P(x)) -> P(a),proved,proved,3,0.023,proved,3,0.038
+course,6,(forall x. P(x)) -> P(b),proved,proved,3,0.018,proved,3,0.032
+course,7,P(a) -> exists x. P(x),proved,proved,3,0.018,proved,3,0.031
+course,8,(forall x. (P(x) & Q(x))) -> ((forall x. P(x)) & (forall x. Q(x))),proved,proved,10,0.055,proved,10,0.116
+course,9,((forall x. P(x)) & (forall x. Q(x))) -> (forall x. (P(x) & Q(x))),proved,proved,9,0.055,proved,9,0.121
+course,10,(exists x. (P(x) | Q(x))) -> ((exists x. P(x)) | (exists x. Q(x))),proved,proved,9,0.060,proved,9,0.126
+course,11,((exists x. P(x)) | (exists x. Q(x))) -> (exists x. (P(x) | Q(x))),proved,proved,10,0.055,proved,10,0.114
+course,12,"(forall x. forall y. R(x, y)) -> (forall y. forall x. R(x, y))",proved,aborted,300,80.102,proved,8,0.200
+course,13,"(exists x. exists y. R(x, y)) -> (exists y. exists x. R(x, y))",proved,aborted,300,80.939,proved,9,0.281
+course,14,(~(forall x. P(x))) -> (exists x. ~P(x)),proved,proved,6,0.034,proved,6,0.076
+course,15,(~(exists x. P(x))) -> (forall x. ~P(x)),proved,proved,6,0.030,proved,6,0.070
+course,16,(forall x. ~P(x)) -> ~(exists x. P(x)),proved,proved,6,0.045,proved,6,0.066
+course,17,(exists x. ~P(x)) -> ~(forall x. P(x)),proved,proved,6,0.028,proved,6,0.077
+course,18,"(exists x. forall y. R(x, y)) -> (forall y. exists x. R(x, y))",proved,aborted,300,390.054,proved,7,0.172
+course,19,"(forall x. exists y. R(x, y)) -> (exists y. forall x. R(x, y))",countermodel,aborted,300,144.882,aborted,300,163.374
+course,20,(forall x. (P(x) | Q(x))) -> ((forall x. P(x)) | (forall x. Q(x))),countermodel,aborted,300,11.029,aborted,300,12.508
+course,21,(exists x. (P(x) & Q(x))) -> ((exists x. P(x)) & (exists x. Q(x))),proved,proved,8,0.057,proved,8,0.109
+course,22,((exists x. P(x)) & (exists x. Q(x))) -> (exists x. (P(x) & Q(x))),countermodel,aborted,300,9.991,aborted,300,13.126
+pelletier,1,(P -> Q) -> (~Q -> ~P),proved,proved,7,0.029,proved,7,0.078
+pelletier,2,~~P -> P,proved,proved,4,0.010,proved,4,0.026
+pelletier,3,~(P -> Q) -> (Q -> P),proved,proved,5,0.011,proved,5,0.036
+pelletier,4,(~P -> Q) -> (~Q -> P),proved,proved,7,0.014,proved,7,0.049
+pelletier,5,((P | Q) -> (P | R)) -> (P | (Q -> R)),proved,proved,9,0.020,proved,9,0.068
+pelletier,6,P | ~P,proved,proved,3,0.006,proved,3,0.017
+pelletier,7,P | ~~~P,proved,proved,5,0.008,proved,5,0.028
+pelletier,8,((P -> Q) -> P) -> P,proved,proved,5,0.010,proved,5,0.027
+pelletier,9,((P | Q) & (~P | Q) & (P | ~Q)) -> ~(~P | ~Q),proved,proved,29,0.057,proved,29,0.221
+pelletier,10,((Q -> R) & (R -> (P & Q)) & (P -> (Q | R))) -> (P -> Q),proved,proved,17,0.040,proved,17,0.134
+pelletier,11,P -> P,proved,proved,2,0.004,proved,2,0.010
+pelletier,12,(((P -> Q) -> R) -> S) -> (((P -> R) -> S) -> S),proved,countermodel,10,0.033,countermodel,10,0.086
+pelletier,13,(P | (Q & R)) -> ((P | Q) & (P | R)),proved,proved,12,0.021,proved,12,0.075
+pelletier,14,(P -> Q) | (Q -> P),proved,proved,4,0.008,proved,4,0.026
+pelletier,15,((P & (Q -> R)) -> S) -> ((~P | Q | S) & (~P | ~R | S)),proved,proved,21,0.041,proved,21,0.168
+pelletier,16,exists y. forall x. F(y) -> F(x),proved,proved,7,0.092,proved,10,0.176
+pelletier,17,exists x. forall y. forall z. (P(y) -> Q(z)) -> (P(x) -> Q(x)),proved,proved,18,0.200,proved,18,0.409
+pelletier,18,(forall x. forall y. exists z. forall w. (P(x) & Q(y)) -> (R(z) & S(w))) -> (exists x. exists y. (P(x) & Q(y))) -> (exists z. R(z)),proved,aborted,300,1149.777,aborted,300,8127.497
+pelletier,19,(exists x. (P -> F(x))) & (exists x. (F(x) -> P)) -> (exists x. (P -> F(x)) & (F(x) -> P)),proved,aborted,300,67.321,proved,41,2.219
+pelletier,20,(forall x. P -> F(x)) -> (P -> forall x. F(x)),proved,proved,7,0.093,proved,7,0.715
+pelletier,21,~(exists x. S(x) & Q(x)) & (forall x. P(x) -> Q(x) | R(x)) & (~(exists x. P(x)) -> exists x. Q(x)) & (forall x. Q(x) | R(x) -> S(x)) -> exists x. P(x) & R(x),proved,aborted,300,11.861,aborted,300,35.368
+pelletier,22,(exists x. P(x)) & (forall x. F(x) -> ~G(x) & R(x)) & (forall x. P(x) -> G(x) & F(x)) & ((forall x. P(x) -> Q(x)) | exists x. P(x) & R(x)) -> exists x. Q(x) & P(x),proved,aborted,300,15.584,proved,67,5.749
+pelletier,23,exists x. (D(x) -> forall y. D(y)),proved,proved,6,0.146,proved,9,0.308
+pelletier,24,"exists b. forall x. shaves(b, x) -> ~shaves(x, x)",countermodel,aborted,300,122.022,aborted,300,200.100
+pelletier,25,((forall x. P(x)) -> (forall x. Q(x))) -> (forall x. (P(x) -> Q(x))),countermodel,countermodel,7,0.132,countermodel,7,1.837
+pelletier,26,(exists x. P(x)) -> forall x. P(x),countermodel,countermodel,3,0.081,countermodel,3,0.113
+propositional,1,P -> P,proved,proved,2,0.016,proved,2,0.033
+propositional,2,P -> Q -> P,proved,proved,3,0.013,proved,3,0.040
+propositional,3,(P -> Q -> R) -> (P -> Q) -> (P -> R),proved,proved,10,0.045,proved,10,0.622
+propositional,4,(~P -> ~Q) -> (Q -> P),proved,proved,7,0.036,proved,7,0.192
+propositional,5,~(P & Q) -> (~P | ~Q),proved,proved,8,0.032,proved,8,0.122
+propositional,6,(~P | ~Q) -> ~(P & Q),proved,proved,8,0.038,proved,8,0.196
+propositional,7,~(P | Q) -> (~P & ~Q),proved,proved,8,0.031,proved,8,0.116
+propositional,8,(~P & ~Q) -> ~(P | Q),proved,proved,8,0.027,proved,8,0.192
+propositional,9,~~P -> P,proved,proved,4,0.015,proved,4,0.045
+propositional,10,P -> ~~P,proved,proved,4,0.016,proved,4,0.047
+propositional,11,P | ~P,proved,proved,3,0.202,proved,3,0.044
+propositional,12,((P -> Q) -> P) -> P,proved,proved,5,0.020,proved,5,0.055
+propositional,13,(P -> Q) -> (~Q -> ~P),proved,proved,7,0.026,proved,7,0.100
+propositional,14,(~Q -> ~P) -> (P -> Q),proved,proved,7,0.030,proved,7,0.094
+propositional,15,(P & Q) -> (P | Q),proved,proved,4,0.015,proved,4,0.052
+propositional,16,(P & (Q | R)) -> ((P & Q) | (P & R)),proved,proved,10,0.037,proved,10,0.147
+propositional,17,((P & Q) | (P & R)) -> (P & (Q | R)),proved,proved,13,0.039,proved,13,0.151
+propositional,18,(P -> (Q -> R)) -> ((P -> Q) -> (P -> R)),proved,proved,10,0.038,proved,10,0.127
+propositional,19,(P -> Q) & (Q -> R) -> (P -> R),proved,proved,8,0.030,proved,8,0.106
+propositional,20,P -> Q,countermodel,countermodel,1,0.018,countermodel,1,0.025
+propositional,21,P & Q,countermodel,countermodel,1,0.035,countermodel,1,0.029
+propositional,22,(P -> Q) -> (Q -> P),countermodel,countermodel,3,0.030,countermodel,3,0.436
+propositional,23,P | Q,countermodel,countermodel,1,0.021,countermodel,1,0.036
+propositional,24,~P,countermodel,countermodel,1,0.022,countermodel,1,0.034
+propositional,25,(P | Q) -> (P & Q),countermodel,countermodel,6,0.043,countermodel,6,0.103
+synthetic,1,P1 -> P1,proved,proved,2,0.011,proved,2,0.027
+synthetic,2,P1 -> (P2 -> P1),proved,proved,3,0.012,proved,3,0.035
+synthetic,3,P1 -> (P2 -> (P3 -> P1)),proved,proved,4,0.015,proved,4,0.051
+synthetic,4,P1 -> (P2 -> (P3 -> (P4 -> P1))),proved,proved,5,0.019,proved,5,0.833
+synthetic,5,P1 -> (P2 -> (P3 -> (P4 -> (P5 -> P1)))),proved,proved,6,0.032,proved,6,0.105
+synthetic,6,(P1 & P1) -> P1,proved,proved,3,0.012,proved,3,0.035
+synthetic,7,(P1 & P2 & P3) -> P1,proved,proved,4,0.015,proved,4,0.195
+synthetic,8,(P1 & P2 & P3 & P4) -> P1,proved,proved,5,0.025,proved,5,0.096
+synthetic,9,(P1 & P2 & P3 & P4 & P5) -> P3,proved,proved,5,0.071,proved,5,0.128
+synthetic,10,(P1 & P2 & P3 & P4 & P5 & P6) -> P6,proved,proved,3,0.012,proved,3,0.041
+synthetic,11,P1 -> (P1 | P2),proved,proved,3,0.012,proved,3,0.033
+synthetic,12,P1 -> (P1 | P2 | P3),proved,proved,4,0.015,proved,4,0.088
+synthetic,13,P1 -> (P2 | P1 | P3 | P4),proved,proved,5,0.025,proved,5,0.081
+synthetic,14,P3 -> (P1 | P2 | P3 | P4 | P5),proved,proved,5,0.026,proved,5,0.081
+synthetic,15,(forall x. P(x)) -> P(a),proved,proved,3,0.045,proved,3,0.238
+synthetic,16,(forall x. P(x)) -> (P(a) & P(b)),proved,proved,6,0.058,proved,6,0.135
+synthetic,17,(forall x. P(x)) -> (P(a) & P(b) & P(c)),proved,proved,9,0.075,proved,9,0.145
+synthetic,18,(forall x. P(x)) -> (P(a) & P(b) & P(c) & P(d)),proved,proved,12,0.088,proved,12,0.181
+synthetic,19,(forall x. P(x) -> Q(x)) -> ((forall x. P(x)) -> (forall x. Q(x))),proved,aborted,300,16.407,proved,9,0.304
+synthetic,20,(P & P) -> P,proved,proved,3,0.014,proved,3,0.041
+synthetic,21,(P & P & P) -> P,proved,proved,3,0.012,proved,3,0.038
+synthetic,22,((P | P) & (P | P)) -> P,proved,proved,5,0.019,proved,5,0.055
+synthetic,23,(~~P & ~~P) -> P,proved,proved,6,0.023,proved,5,0.062
+synthetic,24,"(forall x. exists y. R(x, y)) -> (forall x. exists y. R(x, y))",proved,aborted,300,327.202,aborted,300,447.529
+synthetic,25,"(exists x. forall y. R(x, y)) -> (forall y. exists x. R(x, y))",proved,aborted,300,914.988,proved,7,0.371
+synthetic,26,"(forall x. forall y. R(x, y)) -> (exists x. exists y. R(x, y))",proved,aborted,300,162.233,proved,6,0.358
+synthetic,27,(forall x. P(x) -> P(f(x))) & P(a) -> P(f(a)),proved,proved,6,0.083,proved,44,3.133
+synthetic,28,(forall x. P(x) -> P(f(x))) & P(a) -> P(f(f(a))),proved,aborted,300,45.177,proved,17,1.229
+synthetic,29,(forall x. P(x) -> P(f(x))) & P(a) -> P(f(f(f(a)))),proved,aborted,300,48.924,proved,23,1.367

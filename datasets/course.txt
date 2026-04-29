@@ -1,0 +1,48 @@
+# Course-derived dataset: formulae taken directly from the 3806ICT
+# workshops (weeks 3-5) and Hou (2021) textbook chapter 2 examples.
+# These are the exercises the course used to teach natural deduction and
+# sequent calculus, so proving them automatically is highly relevant.
+
+# --- Workshop 3 / 4 / 5 propositional & FOL exercises ----------------------
+# Workshop 4 Ex 2.4.1
+(~(forall x. R(x))) -> (exists x. ~R(x))	proved
+# Workshop 4 Ex 2.4.2
+(~(exists x. R(x))) -> (forall x. ~R(x))	proved
+# Workshop 4 Ex 2.4.3
+(forall x. exists y. (R1(x) & R2(y))) -> ((forall x. R1(x)) & (exists x. R2(x)))	proved
+# Workshop 4 Ex 2.4.4
+(forall x. R1(x) -> R2(x)) -> ((forall x. R1(x)) -> (forall x. R2(x)))	proved
+
+# --- Textbook Chapter 2 examples (classical FOL validities) ---------------
+# Universal instantiation
+(forall x. P(x)) -> P(a)	proved
+(forall x. P(x)) -> P(b)	proved
+# Existential generalisation
+P(a) -> exists x. P(x)	proved
+# Quantifier distribution over conjunction
+(forall x. (P(x) & Q(x))) -> ((forall x. P(x)) & (forall x. Q(x)))	proved
+((forall x. P(x)) & (forall x. Q(x))) -> (forall x. (P(x) & Q(x)))	proved
+# Existential distribution over disjunction
+(exists x. (P(x) | Q(x))) -> ((exists x. P(x)) | (exists x. Q(x)))	proved
+((exists x. P(x)) | (exists x. Q(x))) -> (exists x. (P(x) | Q(x)))	proved
+# forall swap
+(forall x. forall y. R(x, y)) -> (forall y. forall x. R(x, y))	proved
+# exists swap
+(exists x. exists y. R(x, y)) -> (exists y. exists x. R(x, y))	proved
+# Classical de Morgan for quantifiers
+(~(forall x. P(x))) -> (exists x. ~P(x))	proved
+(~(exists x. P(x))) -> (forall x. ~P(x))	proved
+(forall x. ~P(x)) -> ~(exists x. P(x))	proved
+(exists x. ~P(x)) -> ~(forall x. P(x))	proved
+# Exists-forall -> forall-exists
+(exists x. forall y. R(x, y)) -> (forall y. exists x. R(x, y))	proved
+
+# --- Invalid formulae from the same territory (must not prove) -----------
+# Non-validity: forall-exists does NOT imply exists-forall
+(forall x. exists y. R(x, y)) -> (exists y. forall x. R(x, y))	countermodel
+# Non-validity: distribution of disjunction over universal
+(forall x. (P(x) | Q(x))) -> ((forall x. P(x)) | (forall x. Q(x)))	countermodel
+# Non-validity
+(exists x. (P(x) & Q(x))) -> ((exists x. P(x)) & (exists x. Q(x)))	proved
+# (the previous one is actually valid — keep it; next one isn't)
+((exists x. P(x)) & (exists x. Q(x))) -> (exists x. (P(x) & Q(x)))	countermodel
